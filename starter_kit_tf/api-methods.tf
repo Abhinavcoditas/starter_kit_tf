@@ -4,7 +4,7 @@ locals {
     k => merge(v,
       {
         authorizer_id       = aws_api_gateway_authorizer.this.id
-        function_name       = "${local.environment}-${var.product}-${v.resource_name}"
+        function_name       = module.lambdas["${local.environment}-${var.product}-${v.resource_name}"].lambda_function_name
         function_invoke_arn = module.lambdas["${local.environment}-${var.product}-${v.resource_name}"].lambda_function_invoke_arn
     })
   }
